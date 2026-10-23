@@ -1,65 +1,121 @@
-# 01 — Problem statement
+# 01 — Problem Statement
 
-**Team:** 3 · **Agent:** ML occupancy prediction and last-minute offer recommendation agent · **Last updated:** 23 October 2026
+**Team:** 3 · **Agent:** ClassPass Smart Class & Booking Assistant · **Last updated:** 23 October 2026
 
-> Every number says where it comes from: measured, analogy (a comparable, with its source) or guess (and how you will test it).
+*Evidence convention: Measured = published data or internal data; Analogy = external research; Guess = proposed target to validate through a pilot.*
 
 ## 1. The problem in one sentence
 
-Partner studios, fitness centres and sports facilities working with **[Company name, same business model as AlbertNative]** lose potential revenue when classes, courts or activity slots remain unbooked close to their start time. The company lacks a reliable, data-driven way to predict occupancy and identify which empty spots should be offered at a last-minute discount, when to publish the offer, and at what price. Success looks like increasing last-minute bookings and partner revenue while reducing unused capacity, without unnecessarily discounting spots that would have sold at full price.
+ClassPass partner studios spend time resolving platform questions and managing under-occupied classes, creating support costs and missed booking opportunities. ClassPass reports that 85% of fitness classes do not sell out, while generative AI offers potential to improve customer-care productivity. The proposed assistant aims to reduce support handling time by **20%** and increase occupancy in targeted classes by **3 percentage points** versus a control group.
 
-| Number in the sentence | Value | Measured / analogy / guess | Source or test |
+| Number in the statement | Value | Evidence type | Source or test |
 |---|---|---|---|
-| Current unused capacity | To be established | Guess | Collect historical occupancy and booking data from partner studios and facilities |
-| Increase in last-minute bookings | Target to be established | Guess | Compare the agent's recommendations with the current process through a pilot |
-| Revenue generated from otherwise empty spots | Target to be established | Guess | Track incremental revenue, discount costs and bookings that would have happened anyway |
+| Fitness classes that do not sell out | 85% | Measured — ClassPass data | ClassPass Partner FAQs, based on integrated partner data from 2025 |
+| Studio capacity filled through studios' own channels | Less than 36% | Measured — ClassPass data | ClassPass Partner page, July 2025–June 2026 |
+| Potential customer-care productivity value from GenAI | 30–45% of current function costs | Analogy — industry estimate | McKinsey, *The Economic Potential of Generative AI* |
+| Reduction in support handling time | 20% | Guess — pilot target | Compare median handling time before and after the pilot |
+| Increase in target-class occupancy | +3 percentage points | Guess — pilot target | Compare eligible classes with a control group |
 
 ## 2. Problem tree — from symptom to cause
 
-- **Symptom** (what people complain about): Partner studios and facilities have empty class places or court slots close to the activity time, while potential customers may be looking for available activities at a lower price.
-- **Problem** (what is actually going wrong): The company and its partners cannot consistently predict which sessions will have unused capacity or determine the best timing and discount for a last-minute offer.
-- **Root cause** (5 Whys):
-  1. Why are spots left empty? Because demand does not always match available capacity.
-  2. Why is demand difficult to anticipate? Because occupancy varies by day, time, season, location, activity type and instructor.
-  3. Why can't partners respond consistently? Because booking data and operational knowledge may be spread across different studios, courts and booking systems.
-  4. Why are last-minute offers not always effective? Because decisions may rely on manual judgement or fixed discount rules rather than predictions of expected occupancy and booking behaviour.
-  5. Why is this a problem for the platform company? Because it coordinates multiple partner facilities and needs a scalable way to identify opportunities across its network without harming partners' normal pricing or revenue.
-- **What would fix the cause:** An ML-based agent that predicts occupancy and the probability of a slot remaining empty, then recommends which slots to promote, when to publish an offer and what discount or price to propose. The recommendation should respect each partner's pricing rules and be approved by the company or partner before publication. ML handles prediction; business rules handle constraints and authorisation.
+- **Symptom:** Partners need help with platform features and struggle to identify classes with unsold capacity.
+- **Problem:** Support is largely reactive, while occupancy decisions require manual monitoring and intervention.
+- **Root cause — 5 Whys:**
+  1. Why? Partners spend time finding answers and monitoring bookings.
+  2. Why? Guidance, booking data, and recommendations are not necessarily available in one workflow.
+  3. Why? Support processes focus on answering requests rather than proactively identifying opportunities.
+  4. Why? Booking patterns are not always translated into timely, actionable recommendations for partners.
+  5. Why? Support automation and occupancy optimization need to be connected through shared data, permissions, and approval processes.
+
+- **What fixes the cause?** Build an AI assistant combining platform support, occupancy forecasting, and last-minute offer recommendations, with studio approval before publication and human escalation for financial issues.
+
+**Fix type:** GenAI + predictive machine learning + business rules + workflow integration.
 
 ## 3. Is AI the right tool?
 
-| Question | Our answer |
+| Question | Answer |
 |---|---|
-| Is there a rule that solves 80 % of it? | Fixed rules, such as offering discounts for slots that remain unbooked a few hours before starting, could provide a simple baseline. However, they may not capture differences between locations, instructors, activities, seasons and booking patterns. |
-| Is it a prediction / generation problem, or an organisational decision? | Primarily a prediction problem: estimate occupancy and the probability of a slot remaining empty. Recommending a discount is a decision-support task that combines predictions with business rules and partner preferences. |
-| Do we have the data — which, how much, who owns it? | Potentially, the company and its partners hold booking history, capacity, schedules, cancellations, prices, discounts, location, activity type, instructor and timestamps. Data availability, quality, access rights and sufficient historical volume must be verified with the company and its partners. |
-| What does one error cost — and who pays it? | Overestimating demand may leave spots empty; underestimating demand may trigger unnecessary discounts for spots that would have sold at full price. Partners may lose revenue or trust, while the platform may lose commissions, bookings or partner relationships. The cost should be measured using booking and revenue data. |
+| Can rules solve 80% of the problem? | Rules and FAQs may handle repetitive questions, but the 80% coverage hypothesis must be tested against historical tickets. |
+| Is this prediction, generation, or an organizational decision? | All three: GenAI answers questions and drafts offers; ML forecasts occupancy; studios decide whether to publish offers. |
+| Do we have the data? | Required: platform documentation, support tickets, class schedules, capacity, booking and cancellation history, and offer performance. Availability and quality must be confirmed with ClassPass. |
+| What does an error cost, and who pays? | Incorrect guidance creates operational work; poor forecasts or discounts may reduce studio margins. ClassPass bears support and trust costs; studios bear potential commercial losses. Financial issues remain human-managed. |
 
-**Level chosen:** Classical ML for occupancy and empty-slot prediction, combined with a rule-based recommendation layer and human approval. This is preferable to a GenAI-only solution because the core task requires structured historical data and measurable predictions. A fully autonomous agent is not necessary for the first version; automatic publication can be considered only after performance, safeguards and partner consent are validated.
+**Technology choice:** A bounded AI agent combining GenAI, predictive ML, and deterministic rules.
 
-## 4. Why this agent — the four selection questions
+**Why not a simpler solution?** A scripted chatbot can handle fixed FAQs but cannot flexibly interpret questions or generate contextual recommendations. A fully autonomous agent would create unnecessary operational and commercial risks.
 
-| Criterion | Our answer, one line |
+**Three-level support framework**
+
+| Level | Capability | Access and autonomy |
+|---|---|---|
+| L3 — Platform Support | Answer questions and guide class setup, booking, and platform workflows | Free; automate permitted, low-risk tasks |
+| L2 — Occupancy Intelligence | Forecast occupancy, flag at-risk classes, and draft targeted offers | Paid Pro; studio approval required before publication |
+| L1 — Financial Support | Billing, payments, refunds, and financial disputes | Human-only resolution |
+
+**Task-level trust framework:** L4 — autonomous ticket classification and forecasting; L3 — platform explanations and forecast explanations; L2 — offer proposals requiring approval; L1 — human-only financial support.
+
+These are separate frameworks: the first describes product capabilities; the second describes task-level autonomy.
+
+## 4. Why this agent? — Four selection criteria
+
+| Criterion | Assessment |
 |---|---|
-| High frequency — is the work done every day or every hour? | Yes. Occupancy changes as bookings and cancellations arrive, and the company may need to identify opportunities across many partner facilities every day. |
-| Bounded decision space — can we list its tools and outcomes on one slide? | Yes. The agent can analyse booking and schedule data, predict occupancy, rank potentially empty slots, recommend a publication time and discount, and send the proposal for approval. |
-| Measurable success — can we say in one sentence whether it succeeded on one ticket? | Yes. Measure prediction accuracy and whether recommended offers generate incremental bookings and revenue compared with the current approach. |
-| Recoverable failure — if it is wrong, is the damage limited and reversible? | Mostly, if recommendations require approval, discount limits are enforced, and offers can be withdrawn. Uncontrolled automatic discounting could damage revenue or customer trust, so it should not be part of the initial version. |
+| High frequency | Support questions and booking management recur throughout normal studio operations; validate frequency using ticket and booking data. |
+| Bounded decision space | Tools are limited to approved documentation, ticket classification, authorized booking data, forecasts, offer drafts, approval requests, and human escalation. |
+| Measurable success | Target 20% lower median handling time, at least 90% correct answers on a reviewed test set, and +3 percentage points in occupancy versus control. |
+| Recoverable failure | Answers can be corrected, drafts rejected, and cases escalated. No offer is published without studio approval; financial actions remain with humans. |
 
-## 5. Press release (Working Backwards)
+## 5. Press release — Working Backwards
 
-*23 October 2026 — [Company name] is introducing an ML-powered occupancy and last-minute offer recommendation agent to help its partner studios, fitness centres and sports facilities fill otherwise unused class places and court slots. By analysing historical bookings, capacity, time of day, seasonality, location, activity type, instructor and other relevant variables, the agent predicts which sessions are likely to have empty spots and recommends when and at what price to promote them. The goal is to generate incremental bookings and revenue for partners while giving customers more affordable ways to discover activities. “We can now identify opportunities across our partner network earlier and make more informed decisions about last-minute offers,” says [partner or company representative]. Quantified results and the customer quote will be added after a pilot validates the impact.*
+*Illustrative launch announcement, not a claim that the product has launched.*
+
+**ClassPass introduces Smart Class & Booking Assistant to simplify studio operations**
+
+ClassPass is introducing an AI-powered assistant to help fitness studios resolve platform questions and identify opportunities to fill under-occupied classes. 
+
+- The free Support Agent answers common questions and guides partners through supported workflows. 
+
+- The paid Pro Intelligence add-on forecasts occupancy, flags at-risk classes, and drafts targeted last-minute offers for studio approval. Billing, payments, and refunds remain with human support. 
+
+- The pilot targets a **20% reduction in median support handling time** and a **3-percentage-point increase in occupancy** for eligible classes compared with a control group. Results will be published only after validation.
 
 ## 6. What would have to be true?
 
-| # | Hypothesis | Measured / analogy / guess | How we will test it | Session |
+| # | Hypothesis | Evidence type | How to test it | Session |
 |---|---|---|---|---|
-| 1 | Historical booking and schedule data can predict occupancy or empty spots more reliably than a simple fixed-rule baseline. | Guess | Compare ML predictions with a baseline using historical data; evaluate prediction error on unseen dates and facilities. | S4 prototype / S5 metrics |
-| 2 | Last-minute offers based on predicted occupancy generate more incremental bookings and partner revenue than the current approach. | Guess | Run a controlled pilot comparing eligible sessions with and without agent-recommended offers; account for discounts and bookings that would have occurred anyway. | S5 metrics / S6 A/B |
-| 3 | The company can access sufficiently complete and legally usable data from enough partner facilities to make reliable predictions. | Guess | Audit data coverage, quality, historical depth, partner permissions and contractual restrictions across a sample of studios and facilities. | S4 prototype |
-| 4 | Partners are willing to accept recommendations when they retain control over discount limits and offer approval. | Guess | Interview partner managers, test a recommendation mock-up and measure approval rates during the pilot. | S4 prototype / S5 metrics |
-| 5 | Customers will discover and book last-minute offers without significantly cannibalising full-price bookings. | Guess | Compare incremental bookings, discount cost, full-price booking changes and net revenue during a controlled pilot. | S5 metrics / S6 A/B |
+| 1 | At least 20% of eligible support tickets can be resolved without human intervention. | Guess — target | Review historical tickets and measure correct, independently verified resolution. | S4 prototype / S5 metrics |
+| 2 | AI reduces median handling time by at least 20%, with at least 90% answer correctness. | Guess — target | Compare with the existing workflow using a representative, human-reviewed test set and pilot. | S4 / S5 |
+| 3 | Occupancy forecasts outperform a simple historical baseline by at least 10% on the chosen error metric. | Guess — target | Back-test using time-based holdouts; compare mean absolute error against a defined baseline. | S5 metrics |
+| 4 | Approved offers increase occupancy by at least 3 percentage points versus control. | Guess — target | Run a controlled pilot and measure incremental bookings, occupancy, discount costs, and contribution margin. | S5 / S6 A/B test |
+| 5 | Partners see sufficient value to pay for Pro Intelligence. | Guess — hypothesis | Interview partners and test willingness to pay, conversion, and retention. | S4 / S5 |
+| 6 | Approval and escalation controls prevent unauthorized actions. | Guess — acceptance criterion | Test approval workflows; require 100% of published offers to have recorded approval and 100% of test financial cases to route correctly. | S4 / S5 |
+
+**Pilot measurement definitions**
+
+- **Support handling-time reduction:** (Baseline median handling time − pilot median handling time) ÷ baseline median handling time.
+- **Answer correctness:** Correct, policy-compliant answers ÷ answers independently reviewed.
+- **Forecast improvement:** (Baseline forecast error − model forecast error) ÷ baseline forecast error.
+- **Occupancy uplift:** Treatment-group occupancy change minus control-group occupancy change, expressed in percentage points.
+- **Commercial value:** Incremental revenue minus discount costs and other incremental costs, accounting for displaced bookings where measurable.
+
+All targets above are **proposed acceptance criteria**, not published ClassPass results. Establish the baseline and sample size before the pilot, and report uncertainty alongside the results.
 
 ## 7. Do-nothing baseline
 
-If nobody builds the agent over the next 12 months, the company and its partner facilities will likely continue using their current booking systems, manual judgement, marketing campaigns or fixed discount rules to manage unused capacity. Staff may gradually improve their processes, and existing systems may add better reporting, but the company will still lack a consistent, network-wide way to predict occupancy and recommend targeted offers unless another solution is introduced. Empty slots may continue to represent missed revenue opportunities, while broad or poorly timed discounts may reduce margins on sessions that could have sold at full price. The size of this opportunity is not yet known and should be established from historical occupancy, booking and revenue data.
+Over the next 12 months, partners will continue using existing platform tools and support channels. Documentation and staff experience may improve, and existing ClassPass SmartTools may continue optimizing availability. Therefore, the assistant must demonstrate incremental value beyond current capabilities, not merely reproduce existing functionality.
+
+**Baseline to collect before launch:**
+
+- Monthly support-ticket volume, median handling time, first-contact resolution, and repeat-contact rate.
+- Percentage of eligible tickets resolved correctly without human intervention.
+- Class occupancy by class type and lead time, using a consistent definition of available capacity.
+- Forecast error and performance of existing scheduling tools.
+- Incremental bookings, discount costs, contribution margin, and partner adoption of existing tools.
+
+**Go/no-go decision:** Proceed if ticket analysis identifies a meaningful automation opportunity, forecasts outperform the baseline, and a controlled trial shows positive incremental commercial value without unacceptable accuracy or safety issues. Scale only after the pilot confirms the results.
+
+## 8. Sources
+
+1. ClassPass — Partner FAQs. Reports that 85% of fitness classes do not sell out and explains its SmartSpot inventory-optimization approach.
+
+https://classpass.com/partners/faqs?utm_source=chatgpt.com
