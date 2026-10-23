@@ -1,4 +1,4 @@
-# iSpot — partner-support agent that fills empty slots
+# iSpot — ClassBook's partner-support agent that fills empty slots
 
 **Course:** Data & AI Product: From Diagnosis to Delivery (MSA-DAT07-04) · Albert School · shared project with Agentic Workflows
 **Cohort:** M2-INTER-1
