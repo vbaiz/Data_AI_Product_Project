@@ -6,10 +6,10 @@
 ## Team
 | Name | Git handle | Also in the Agentic Workflows team? |
 |---|---|---|
-| | | yes |
-| | | yes |
-| | | yes |
-| | | yes |
+| Viviam Baiz |vbaiz | yes |
+| Hoang TRAN | ntran-creator | yes |
+| Miguel Negrón | mnegron-cloud | no |
+| Chaume Carla | | no |
 
 ## Our agent
 - **Starting point:** P_ — [proposal name] · or **bring your own** (see `00_pitch.md`)
