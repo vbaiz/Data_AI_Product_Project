@@ -12,7 +12,7 @@
 | 3 | **Accountability:** who is accountable when it is wrong — and where is the human? | The product company is accountable for its system responsibilities. Partners approve offers before publication. Human support handles billing, payments, refunds, and financial disputes. | Product Lead / Legal |
 | 4 | **Never:** what must it never do? (our first guardrail) | Never publish an offer without explicit partner approval, independently resolve financial disputes, or expose one partner's confidential data to another. | Product / Engineering |
 | 5 | **Explainability:** explainable to whom — the customer, the support agent, the auditor? | Partners see why a class is flagged and the main forecast factors. Support agents see answer sources and escalation reasons. Auditors can review system logs, permissions, and approval records. | Product / Data Science |
-| 6 | **People it cannot serve** | If the AI lacks reliable data or cannot resolve a request, it explains its limitations and offers human support. Financial requests are always escalated to a human. | Support Operations / Accessibility |
+| 6 | **The people it cannot serve:** what happens to them? | If the AI lacks reliable data or cannot resolve a request, it explains its limitations and offers human support. Financial requests are always escalated to a human. | Support Operations / Accessibility |
 
 ## Session 2 — the cost of error
 - Which cost-of-error line is a **legal or reputational** risk, not just money? …
