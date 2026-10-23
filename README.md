@@ -10,7 +10,7 @@
 | Viviam Baiz   | vbaiz         | yes                                 |
 | Hoang TRAN    | ntran-creator | yes                                 |
 | Miguel Negrón | mnegron-cloud | no                                  |
-| Chaume Carla  | [add handle]  | no                                  |
+| Chaume Carla  | carlachm      | no                                  |
 
 ## Our agent
 
